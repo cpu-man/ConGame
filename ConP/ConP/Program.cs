@@ -43,7 +43,7 @@ namespace Testing
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
             Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissor");
-
+                
         }
     }
 }

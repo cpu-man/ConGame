@@ -33,17 +33,27 @@ namespace Testing
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"WELCOME {userName} TO THE CONSOLE");
+            RockPaper(userName);
             
         }
 
         static void RockPaper(string name)
         {
-            string[] gameObject = { "Rock", "Paper", "Scissor" };
+            string[] gameObject = { "Rock", "Paper", "Scissors" };
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
-            Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissor. \nPress enter when you're ready.");
-            Console.ReadKey(ConsoleKey.Enter);
+            Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissors. \nPress any key when you're ready.");
+            Console.ReadKey();
+
+            //do
+            //{
+                Random random = new Random();
+                int randomObject = random.Next(0, gameObject.Length);
+                string cpuChoice = gameObject[randomObject];
+                Console.WriteLine("Choose a weapon");
+            Console.WriteLine($"CPU chose {cpuChoice}");
+            //} while;
 
         }
     }

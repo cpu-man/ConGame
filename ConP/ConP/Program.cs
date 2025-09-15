@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,26 @@ namespace Testing
                 int randomObject = random.Next(0, gameObject.Length);
                 string cpuChoice = gameObject[randomObject];
                 Console.WriteLine("Choose a weapon");
-            Console.WriteLine($"CPU chose {cpuChoice}");
+                int userInput = int.Parse(Console.ReadLine());
+                string userChoice = gameObject[userInput - 1];
+                Console.WriteLine($"{name} chose {userChoice}");
+                Console.WriteLine($"CPU chose {cpuChoice}");
+                if (userChoice == cpuChoice)
+                {
+                    Console.WriteLine("It's a draw!");
+                }
+                else if ((userChoice == gameObject[0] && cpuChoice == gameObject[2]) ||
+                        (userChoice == gameObject[1] && cpuChoice == gameObject[0]) ||
+                        (userChoice == gameObject[2] && cpuChoice == gameObject[1]))
+                {
+                    Console.WriteLine($"{name} wins the game!");
+                }
+                else
+                {
+                    Console.WriteLine($"CPU wins the game!");
+                }
+                
+
             //} while;
 
         }

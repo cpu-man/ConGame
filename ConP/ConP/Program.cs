@@ -33,11 +33,16 @@ namespace Testing
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"WELCOME {userName} TO THE CONSOLE");
+            
         }
 
-        static void RockPaper()
+        static void RockPaper(string name)
         {
-
+            string[] gameObject = { "Rock", "Paper", "Scissor" };
+            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
+            Console.WriteLine("");
         }
     }
 }

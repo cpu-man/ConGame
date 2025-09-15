@@ -42,7 +42,7 @@ namespace Testing
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
-            Console.WriteLine("Testing");
+            Console.WriteLine("Testing The Shit once more");
         }
     }
 }

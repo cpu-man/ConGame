@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -109,9 +110,45 @@ namespace Testing
         }
         private static int printWord(List<char> guessedLetters, string randomWord) // 2 parametre indført som  er et bogstav vores gættet ord og anden er vores tilfældige ord vi har inddraget. 
         {
-            int counter = 0;
+            int counter = 0; // under disse 3 linjer beskriver vi kort at der er tæller på når vi gætter på bogostaver så de følger med 
             int rightLetters = 0;
             Console.WriteLine();
+            foreach (char c in randomWord)
+            {
+                if(guessedLetters(c))
+                {
+                    Console.Write(c + " "); // hvis gættet bogstov er i ordet bliver den medført + mellemrum
+                    rightLetters++;      
+                }
+                else
+                {
+                    Console.Write(" "); // hvis bogstavet ikke er med så kun lav mellemrum 
+                }
+                counter++;
+            }
+            return rightLetters;
+        }
+
+        private static void printLines(string randomWord)
+        {
+            Console.WriteLine();
+            foreach(char c in randomWord)
+            {
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.Write("\u0305"); // for at lave linjer under hver bogstav men i anden linje  
+
+            }
+        }
+        static void hangman(string name)
+        {
+            Console.WriteLine("Welcome to hell XOXO");
+            Console.WriteLine("--------------------");
+
+            Random random = new Random();
+            List<string> wordDictionary = new List<string> { "csharp", "zzz", "kuglepen", "sko", "bøger", "datamatiker", "apple", "maserati", "cykelhjelm", "grenaa", "snørebånd", "julefrokost", "sommer", "sol", "fiat" };
+
+
+
         }
     }
 }

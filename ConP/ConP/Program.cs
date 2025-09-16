@@ -31,32 +31,42 @@ namespace Testing
                 }
 
             } while (!validAge);
+            StartMenu(userName);
+
+        }
+
+        static void StartMenu(string name)
+        {
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"WELCOME {userName} TO THE CONSOLE");
-            RockPaper(userName);
-            
+            Console.WriteLine($"WELCOME {name} TO THE CONSOLE");
+            RockPaper(name);
         }
 
         static void RockPaper(string name)
         {
+            Console.Clear();
             string[] gameObject = { "Rock", "Paper", "Scissors" };
+            bool tryAgain = true;
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
-            Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissors. \nPress any key when you're ready.");
+            Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissors \nPress any key when you're ready.");
             Console.ReadKey();
 
-            //do
-            //{
+            do
+            {
+                Console.Clear();
                 Random random = new Random();
-                int randomObject = random.Next(0, gameObject.Length);
+                int randomObject = random.Next(gameObject.Length);
                 string cpuChoice = gameObject[randomObject];
                 Console.WriteLine("Choose a weapon");
                 int userInput = int.Parse(Console.ReadLine());
                 string userChoice = gameObject[userInput - 1];
                 Console.WriteLine($"{name} chose {userChoice}");
                 Console.WriteLine($"CPU chose {cpuChoice}");
+
                 if (userChoice == cpuChoice)
                 {
                     Console.WriteLine("It's a draw!");
@@ -71,10 +81,16 @@ namespace Testing
                 {
                     Console.WriteLine($"CPU wins the game!");
                 }
-                
+                Console.WriteLine("Want to play again? (y/n)");
+                string userResponse = Console.ReadLine().ToLower();
+                tryAgain = (userResponse == "y");
 
-            //} while;
+
+            } while (tryAgain);
+            StartMenu(name);
 
         }
+
+       
     }
 }

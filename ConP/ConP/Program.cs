@@ -43,6 +43,7 @@ namespace Testing
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"WELCOME {name} TO THE CONSOLE");
             RockPaper(name);
+            TicTac(name);
         }
 
         static void RockPaper(string name) //Seperat funktion til sten,saks, papir
@@ -65,7 +66,7 @@ namespace Testing
                 Random random = new Random();
                 int randomObject = random.Next(gameObject.Length);
                 string cpuChoice = gameObject[randomObject];
-                Console.WriteLine("Choose a weapon");
+                Console.WriteLine("Choose your weapon");
                 int userInput = int.Parse(Console.ReadLine()); //spillerens input bliver konverteret til en int vha. Parse
                 string userChoice = gameObject[userInput - 1]; // Ét tal bliver trækket fra spillerens input så det passer til arrays position
                 Console.WriteLine($"{name} chose {userChoice}");
@@ -85,14 +86,24 @@ namespace Testing
                 {
                     Console.WriteLine($"CPU wins the game!"); // Alle andre muligheder resulterer i CPU'en vinder
                 }
+                //string quitKey = Console.ReadLine().ToLower();
+                //quitGame = (quitKey == "q");
                 Console.WriteLine("Want to play again? (y/n)");
-                string userResponse = Console.ReadLine().ToLower(); //Spillerens input bliver konverteret til lower case
+                string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
                 tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud
-
+                
 
             } while (tryAgain);
             StartMenu(name); //Går tilbage til StartMenu funktionen
 
+        }
+
+        static void TicTac(string name)
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Welcome to Tic Tac Toe, {name}");
         }
 
        

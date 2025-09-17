@@ -25,7 +25,7 @@ namespace Testing
                 if (userAge < 18)
                 {
                     Console.WriteLine("You're sadly not old enough to use this platform");
-                    validAge = false; 
+                    validAge = false;
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace Testing
                     Console.WriteLine($"CPU wins the game!"); // Alle andre muligheder resulterer i CPU'en vinder
                     cpuScore++; //Ligger én oven i cpuScore
                 }
-                
+
                 //string quitKey = Console.ReadLine().ToLower();
                 //quitGame = (quitKey == "q");
                 Console.WriteLine($"{name} has {playerScore} points \nCPU has {cpuScore} points");
@@ -99,7 +99,7 @@ namespace Testing
                 Console.WriteLine("Want to play again? (y/n)");
                 string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
                 tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud
-                
+
 
             } while (tryAgain);
             StartMenu(name); //Går tilbage til StartMenu funktionen
@@ -111,9 +111,10 @@ namespace Testing
             Console.Clear();
             int cpuMove = 0;
             int playerMove = 0;
-            bool playAgain = true;
+            //bool playAgain = true;
             bool gameOver = false;
             bool validPosition;
+            bool tryAgain = true;
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"Welcome to Tic Tac Toe, {name}");
@@ -121,22 +122,22 @@ namespace Testing
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
 
-            while (playAgain)
+            //while (tryAgain)
             {
-            Console.Clear();
-            string[,] gameBoard = new string[3, 3];
-            for(int row = 0; row<3; row++)
-            {
-                for(int col =0; col <3; col++)
+                Console.Clear();
+                string[,] gameBoard = new string[3, 3];
+                for (int row = 0; row < 3; row++)
                 {
-                    gameBoard[row, col] = ".";
+                    for (int col = 0; col < 3; col++)
+                    {
+                        gameBoard[row, col] = ".";
+                    }
                 }
-            }
 
 
-            do
-            {
-                if (playerMove < 3)
+                do
+                {
+                    if (playerMove < 3)
                     {
                         validPosition = true;
                         Console.WriteLine("Which row would you like to place your X on? (1-3)");
@@ -158,47 +159,75 @@ namespace Testing
                     PrintBoard(gameBoard);
 
 
-                if (cpuMove < 3 && !gameOver)
-                {
-                    Random random = new Random();
-                    bool cpuPosition = false;
-                    do
+                    if (cpuMove < 3 && !gameOver)
                     {
-                        int cpuRow = random.Next(0, 3);
-                        int cpuCol = random.Next(0, 3);
-                        if (gameBoard[cpuRow, cpuCol] == ".")
+                        Random random = new Random();
+                        bool cpuPosition = false;
+                        do
                         {
-                            gameBoard[cpuRow, cpuCol] = "O";
-                            cpuPosition = true;
-                            cpuMove++;
-                            Console.WriteLine($"CPU has placed an O in row {cpuRow + 1}, col {cpuCol + 1}");
-                        }
-                    } while (!cpuPosition);
+                            int cpuRow = random.Next(0, 3);
+                            int cpuCol = random.Next(0, 3);
+                            if (gameBoard[cpuRow, cpuCol] == ".")
+                            {
+                                gameBoard[cpuRow, cpuCol] = "O";
+                                cpuPosition = true;
+                                cpuMove++;
+                                Console.WriteLine($"CPU has placed an O in row {cpuRow + 1}, col {cpuCol + 1}");
+                            }
+                        } while (!cpuPosition);
+                    }
+                    PrintBoard(gameBoard);
+
+                } while (!gameOver && (playerMove < 3 || cpuMove < 3));
+
+
+                if ((playerMove >= 3 || cpuMove >= 3) && CheckWin(gameBoard, "X") || CheckWin(gameBoard, "O"))
+                {
+                    gameOver = true;
+                    Console.WriteLine(CheckWin(gameBoard, "X") ? $"{name} won!" : "CPU won!");
+                }
+                else
+                {
+                    gameOver = false;
+                    Console.WriteLine("Nobody won...");
                 }
                 PrintBoard(gameBoard);
 
-             if ((playerMove >= 3 || cpuMove >= 3) && CheckWin(gameBoard, "X") || CheckWin(gameBoard, "O"))
-                    {
+                Console.WriteLine("Do you want to try again? (y/n)");
+                string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
+                tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud
+                //} while (tryAgain);
+                StartMenu(name);
 
-                    }
-            } while (!gameOver && (playerMove < 3 || cpuMove < 3));
 
-        }
-         void PrintBoard(string[,] board)
-        {
-            for (int row = 0; row < 3; row++)
-            {
-                for (int col = 0; col < 3; col++)
+
+                void PrintBoard(string[,] board)
                 {
-                    Console.Write(board[row, col] + " ");
+                    for (int row = 0; row < 3; row++)
+                    {
+                        for (int col = 0; col < 3; col++)
+                        {
+                            Console.Write(board[row, col] + " ");
+                        }
+                        Console.WriteLine();
+                    }
                 }
-                Console.WriteLine();
+
+                bool CheckWin(string[,] board, string symbol)
+                {
+                    for (int row = 0; row < 3; row++)
+                    {
+                        if (board[row, 0] == symbol && board[row, 1] == symbol && board[row, 2] == symbol)
+                            return true;
+                    }
+                    for (int col = 0; col < 3; col++)
+                    {
+                        if (board[col, 0] == symbol && board[col, 1] == symbol && board[col, 2] == symbol)
+                            return true;
+                    }
+                    return false;
+                }
             }
         }
-         
-             void CheckWin(string[,] board, string symbol)
-            {
-
-            }
     }
 }

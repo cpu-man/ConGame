@@ -1,0 +1,8 @@
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\obj\Debug\ConP.csproj.AssemblyReference.cache
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\obj\Debug\ConP.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\bin\Debug\ConP.exe.config
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\bin\Debug\ConP.exe
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\bin\Debug\ConP.pdb
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\obj\Debug\ConP.exe
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\obj\Debug\ConP.pdb
+C:\Users\asus\OneDrive - ViaUC\Dokumenter\GitHub\ConGame\ConP\ConP\obj\Debug\ConP.exe.config

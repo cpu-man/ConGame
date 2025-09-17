@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ConGame\\ConP\\",
+  "WorkspaceRootPath": "C:\\Users\\asus\\OneDrive - ViaUC\\Dokumenter\\GitHub\\ConGame\\ConP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4AA31FD9-8644-4E07-8DE5-8E86168D1453}|ConP\\ConP.csproj|d:\\congame\\conp\\conp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4AA31FD9-8644-4E07-8DE5-8E86168D1453}|ConP\\ConP.csproj|c:\\users\\asus\\onedrive - viauc\\dokumenter\\github\\congame\\conp\\conp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4AA31FD9-8644-4E07-8DE5-8E86168D1453}|ConP\\ConP.csproj|solutionrelative:conp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,21 +14,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ConGame\\ConP\\ConP\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\OneDrive - ViaUC\\Dokumenter\\GitHub\\ConGame\\ConP\\ConP\\Program.cs",
               "RelativeDocumentMoniker": "ConP\\Program.cs",
-              "ToolTip": "D:\\ConGame\\ConP\\ConP\\Program.cs",
-              "RelativeToolTip": "ConP\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAuwCwAAAA8AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\asus\\OneDrive - ViaUC\\Dokumenter\\GitHub\\ConGame\\ConP\\ConP\\Program.cs*",
+              "RelativeToolTip": "ConP\\Program.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-15T09:07:45.705Z",
               "EditorCaption": ""

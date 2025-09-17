@@ -43,7 +43,7 @@ namespace Testing
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"WELCOME {name} TO THE CONSOLE");
-            //RockPaper(name);
+            RockPaper(name);
             TicTac(name);
         }
 
@@ -117,6 +117,7 @@ namespace Testing
             bool tryAgain = true;
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("STILL UNDER DEVELOPMENT!!!!");
             Console.WriteLine($"Welcome to Tic Tac Toe, {name}");
             Console.WriteLine("Get three X's in a row, after your third input you get to change the position of on of your X's.");
             Console.WriteLine("Press any key to continue");
@@ -191,13 +192,13 @@ namespace Testing
                     gameOver = false;
                     Console.WriteLine("Nobody won...");
                 }
-                PrintBoard(gameBoard);
+       
 
-                Console.WriteLine("Do you want to try again? (y/n)");
-                string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
-                tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud
-                //} while (tryAgain);
-                StartMenu(name);
+                //Console.WriteLine("Do you want to try again? (y/n)");
+                //string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
+                //tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud
+                ////} while (tryAgain);
+                //StartMenu(name);
 
 
 

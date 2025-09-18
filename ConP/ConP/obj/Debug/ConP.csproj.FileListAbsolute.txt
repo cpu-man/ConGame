@@ -1,0 +1,8 @@
+D:\ConGame\ConP\ConP\obj\Debug\ConP.csproj.AssemblyReference.cache
+D:\ConGame\ConP\ConP\obj\Debug\ConP.csproj.CoreCompileInputs.cache
+D:\ConGame\ConP\ConP\bin\Debug\ConP.exe.config
+D:\ConGame\ConP\ConP\bin\Debug\ConP.exe
+D:\ConGame\ConP\ConP\bin\Debug\ConP.pdb
+D:\ConGame\ConP\ConP\obj\Debug\ConP.exe
+D:\ConGame\ConP\ConP\obj\Debug\ConP.pdb
+D:\ConGame\ConP\ConP\obj\Debug\ConP.exe.config

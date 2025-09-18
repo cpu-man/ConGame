@@ -19,6 +19,7 @@ namespace Testing
                 bool validAge = true;
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Welcome to Awesome games");
+                Console.Write("\r\n");
                 Console.WriteLine("Please type your name");
                 userName = Console.ReadLine();
                 do

@@ -39,6 +39,7 @@ namespace Testing
 
         static void StartMenu(string name)
         {
+            Console.Clear();
             Console.ResetColor();
 
             Console.BackgroundColor = ConsoleColor.Green;
@@ -46,7 +47,7 @@ namespace Testing
 
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"welcome to world of AwesomeGames {name}\u001b[0m");
+            Console.WriteLine($"welcome to world of AwesomeGames, {name}\u001b[0m");
 
             Console.WriteLine("\nUse UpArrow & DownArrow to chose an option and press the \u001b[32mEnter\u001b[0m key to select");
 
@@ -61,9 +62,9 @@ namespace Testing
             {
                 Console.SetCursorPosition(left, top);
 
-                Console.WriteLine($"{(option == 1 ? color : "")}Tic Tac Toe \u001b[0m");
+                Console.WriteLine($"{(option == 1 ? color : "")}Rock, Paper, Scissors \u001b[0m");
                 Console.WriteLine($"{(option == 2 ? color : "")}Hangman \u001b[0m");
-                Console.WriteLine($"{(option == 3 ? color : "")}Rock, Paper, Scissors \u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Tic Tac Toe \u001b[0m");
                 Console.WriteLine($"{(option == 4 ? color : "")}EXIT \u001b[0m");
 
                 key = Console.ReadKey(true);
@@ -110,7 +111,7 @@ namespace Testing
             }
 
 
-            Console.WriteLine($"you have selected the option {option}");
+            Console.WriteLine($"you have selected the option: {option}");
         }
     
 
@@ -178,7 +179,7 @@ namespace Testing
         {
             Console.Clear();
             int cpuMove = 0;
-            int playerMove = 0;
+            int playerMove = 0; // sammen med cpuMove tjekker hvor mange gange der er blevet lagt en brik
             //bool playAgain = true;
             bool gameOver = false;
             bool validPosition;
@@ -194,6 +195,7 @@ namespace Testing
             //while (tryAgain)
             {
                 Console.Clear();
+                //Laver et bræt ud af punktumer i vores arrays
                 string[,] gameBoard = new string[3, 3];
                 for (int row = 0; row < 3; row++)
                 {
@@ -206,18 +208,19 @@ namespace Testing
 
                 do
                 {
+                    // Hvis spilleren har sat mindre end 3 brikker forsætter loppet
                     if (playerMove < 3)
                     {
                         validPosition = true;
                         Console.WriteLine("Which row would you like to place your X on? (1-3)");
                         int rowChoice = int.Parse(Console.ReadLine()) - 1;
                         Console.WriteLine("Which coloumn would you like to place your X on? (1-3)");
-                        int colChoice = int.Parse(Console.ReadLine()) - 1;
+                        int colChoice = int.Parse(Console.ReadLine()) - 1; //Konverter spillerens input fra string til int og trækker én fra så det passer til vores Aarray
 
-                        if (rowChoice >= 0 && rowChoice < 3 && colChoice >= 0 && colChoice < 3)
+                        if (rowChoice >= 0 && rowChoice < 3 && colChoice >= 0 && colChoice < 3) //Hvis spillerens input er inden for mængden af arrays vil der sættes X
                         {
                             gameBoard[rowChoice, colChoice] = "X";
-                            playerMove++;
+                            playerMove++; //Tilføjer én til int playerMove  (0->1->2...)
                         }
                         else
                         {
@@ -225,7 +228,7 @@ namespace Testing
                             validPosition = false;
                         }
                     }
-                    PrintBoard(gameBoard);
+                    PrintBoard(gameBoard); //Viser brættet med brikker
 
 
                     if (cpuMove < 3 && !gameOver)
@@ -235,8 +238,8 @@ namespace Testing
                         do
                         {
                             int cpuRow = random.Next(0, 3);
-                            int cpuCol = random.Next(0, 3);
-                            if (gameBoard[cpuRow, cpuCol] == ".")
+                            int cpuCol = random.Next(0, 3); //CPU'en vælger tilfældigt tal inden for vores array
+                            if (gameBoard[cpuRow, cpuCol] == ".") //Kan kun sætte et brik på punktumerne (frie pladser)
                             {
                                 gameBoard[cpuRow, cpuCol] = "O";
                                 cpuPosition = true;
@@ -247,13 +250,14 @@ namespace Testing
                     }
                     PrintBoard(gameBoard);
 
-                } while (!gameOver && (playerMove < 3 || cpuMove < 3));
+                } while (!gameOver && (playerMove < 3 || cpuMove < 3)); //Kører hele loopet så længe hver spiller har mindre end tre brikker OG gameOver er falsk
 
-
+                //Hvis spilleren ELLER CPU'en lagt 3 brikker OG CheckWin funktionen kan se der er blevet lagt brikker på stribe kører denne if statement
                 if ((playerMove >= 3 || cpuMove >= 3) && CheckWin(gameBoard, "X") || CheckWin(gameBoard, "O"))
                 {
                     gameOver = true;
                     Console.WriteLine(CheckWin(gameBoard, "X") ? $"{name} won!" : "CPU won!");
+                    //Hvis CheckWin funktionen svarer tilbage med 'true' kører den, hvis X har vundet skriver den det ud, hvis den kan se O har vundet skriver den så i stedet for det vha. '? :'
                 }
                 else
                 {
@@ -269,7 +273,7 @@ namespace Testing
                 //StartMenu(name);
 
 
-
+                //Laver en ny udgave af brættet hver gang der laves ændringer på den og 'printes' ud
                 void PrintBoard(string[,] board)
                 {
                     for (int row = 0; row < 3; row++)
@@ -281,11 +285,12 @@ namespace Testing
                         Console.WriteLine();
                     }
                 }
-
+                //Tjekker om kryds eller bolle er blevet sat på stribe når der er blevet lagt tre brikker fra hver
                 bool CheckWin(string[,] board, string symbol)
                 {
                     for (int row = 0; row < 3; row++)
                     {
+                        //Tjekker hver række og symbol (sat til X og O i CheckWin variablen l. 256)
                         if (board[row, 0] == symbol && board[row, 1] == symbol && board[row, 2] == symbol)
                             return true;
                     }
@@ -294,7 +299,7 @@ namespace Testing
                         if (board[col, 0] == symbol && board[col, 1] == symbol && board[col, 2] == symbol)
                             return true;
                     }
-                    return false;
+                    return false; //Hvis ingen er på stribe vinder ingen og 'gameOver' bliver sat til false
                 }
             }
         }

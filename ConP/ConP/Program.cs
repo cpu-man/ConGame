@@ -1,6 +1,7 @@
 ﻿using Microsoft.CSharp;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,7 @@ namespace Testing
                 Console.WriteLine("     |  ");
                 Console.WriteLine("     |  ");
                 Console.WriteLine("    ---  ");
+
             }
             else if (wrong == 1)
             {
@@ -194,17 +196,6 @@ namespace Testing
             return rightLetters;
         }
 
-        private static void printLines(string randomWord)
-        {
-            Console.Write("\r");
-            foreach (char c in randomWord)
-            {
-                Console.OutputEncoding = System.Text.Encoding.Unicode;
-                Console.Write("\u0305 "); // for at lave linjer under hver bogstav men i anden linje  
-
-            }
-        }
-
         static void StartHangman()
         {
             Console.Clear();
@@ -212,14 +203,17 @@ namespace Testing
             Console.WriteLine("----------------------------");
 
             Random random = new Random();
-            List<string> wordDictionary = new List<string> { "csharp", "zzz", "kuglepen", "sko", "bøger", "datamatiker", "apple", "maserati", "cykelhjelm", "grenaa", "snørebånd", "julefrokost", "sommer", "sol", "fiat" };
+            List<string> wordDictionary = new List<string> { "csharp", "zzz", "kuglepen", "sko", "bøger", "datamatiker", "apple", "maserati", "cykelhjelm", "grenaa", "snørebånd", "julefrokost", "sommer", "sol", "fiat","chokolade", "vin", "sne", "vand", "tv" };
             int index = random.Next(wordDictionary.Count);
             string randomWord = wordDictionary[index];
 
+            Console.Write("\r\n");
+            Console.WriteLine("Guess the word");
             foreach (char x in randomWord)
             {
                 Console.Write("_ ");
             }
+            Console.Write("\r\n");
 
             int lengthOfWordToGuess = randomWord.Length;
             int amountOfTimesWrong = 0;
@@ -233,58 +227,71 @@ namespace Testing
                 {
                     Console.Write(letter + " ");
                 }
-                // promopt user for input 
+
+                // forbereder bruger til at indtaste et bogstav i randomword 
                 Console.Write("\nguess a letter: ");
                 char lettersGuessed = Console.ReadLine()[0];
-                // check if letter has allready been guessed / used 
+                // tjek hvsi bogstav allerede er belvet brugt  
                 if (currentLettersGuessed.Contains(lettersGuessed))
                 {
+                    Console.Clear();
+                    foreach (char x in randomWord)
+                    {
+                        Console.Write("_ ");
+                    }
                     Console.Write("\r\nThis letter has been guessed.");
                     Hangman(amountOfTimesWrong);
                     currentLettersRight = printWord(currentLettersGuessed, randomWord);
-                    //printLines(randomWord);
+                   
 
                 }
                 else
                 {
-                    // check if letter is in the word 
+                    // check hvis bogstavet er i ordet 
                     bool right = false;
                     for (int i = 0; i < randomWord.Length; i++) if (lettersGuessed == randomWord[i]) { right = true; }
+                    foreach (char x in randomWord)
                     {
 
 
                         if (right)
                         {
+                            Console.Clear();
                             Hangman(amountOfTimesWrong);
                             currentLettersGuessed.Add(lettersGuessed);
                             currentLettersRight = printWord(currentLettersGuessed, randomWord);
                             Console.Write("\r\n");
-                            //printLines(randomWord);
+                            foreach (char x in randomWord)
+                            {
+                                Console.Write("_ ");
+                            }
                         }
                         else
                         {
+                            Console.Clear();
                             currentLettersGuessed.Add(lettersGuessed);
                             Hangman(amountOfTimesWrong);
                             currentLettersRight = printWord(currentLettersGuessed, randomWord);
                             Console.Write("\r\n");
-                            //printLines(randomWord);
+                            foreach (char x in randomWord)
+                            {
+                                Console.Write("_ ");
+                            }
                         }
                     }
                     if (right == false)
                     {
                         amountOfTimesWrong++;
-
-
                     }
                 }
                 if (currentLettersRight == lengthOfWordToGuess)
                 {
-                    Console.WriteLine("\r\n Thank you for your participation get back soon");
+                    Console.WriteLine("\r\n Congratulations!!! You saved the man ");
                     break;
                 }
                 if (amountOfTimesWrong == 7)
                 {
-                    Console.WriteLine("\r\n Thank you for your participation get back soon tomorrow");
+                    Console.WriteLine("\r\n You died!!! XO try again ");
                     break;
                 }
             }

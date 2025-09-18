@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace Testing
                 Console.WriteLine("Welcome to Awesome games");
                 Console.Write("\r\n");
                 Console.WriteLine("Please type your name");
+                Console.Write("\r\n");
                 userName = Console.ReadLine();
                 do
                 {
@@ -49,13 +51,13 @@ namespace Testing
                 Console.WriteLine("\nUse UpArrow & DownArrow to chose an option and press the \u001b[32mEnter\u001b[0m key to select");
 
                 ConsoleKeyInfo key;
-                int option = 1;
-                bool isSelected = false;
+                int option = 1; // her da vi allerede er i mulighederne så den skal starte der 
+                bool isSelected = false; 
                 int left = Console.CursorLeft;
-                int top = Console.CursorTop; // for at man kun kan vælgem ellem mulighederne
-                string color = " \u001b[32m";
+                int top = Console.CursorTop; // for at man kun kan vælge mellem mulighederne
+                string color = " \u001b[32m"; 
 
-                while (!isSelected)
+                while (!isSelected) // den valgte mulighed vil blive higlightet med denne farve vha string color
                 {
                     Console.SetCursorPosition(left, top);
 
@@ -75,13 +77,13 @@ namespace Testing
                         case ConsoleKey.UpArrow:
                             option = (option == 1 ? 4 : option - 1);
                             break;
-
+                            // disse cases beskriver at der kun kan vælges mellem disse og at kun enter kan komme videre i dem med isselected
                         case ConsoleKey.Enter:
                             isSelected = true;
                             choiceInteger = option;
                             break;
                     }
-                    if (isSelected)
+                    if (isSelected) // her når vi skifter til en af spillene 
                     {
                         switch (option)
                         {

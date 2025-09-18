@@ -14,21 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ConGame\\ConP\\ConP\\Program.cs",
               "RelativeDocumentMoniker": "ConP\\Program.cs",
-              "ToolTip": "D:\\ConGame\\ConP\\ConP\\Program.cs",
-              "RelativeToolTip": "ConP\\Program.cs",
-<<<<<<< HEAD
-              "ViewState": "AgIAABsAAAAAAAAAAAAuwCwAAAA8AAAAAAAAAA==",
-=======
-              "ViewState": "AgIAAHMBAAAAAAAAAAAswA0AAABXAAAAAAAAAA==",
->>>>>>> RPS
+              "ToolTip": "D:\\ConGame\\ConP\\ConP\\Program.cs*",
+              "RelativeToolTip": "ConP\\Program.cs*",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAD4AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-18T08:15:14.884Z",
               "EditorCaption": ""

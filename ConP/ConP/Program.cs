@@ -58,9 +58,9 @@ namespace Testing
             {
                 Console.SetCursorPosition(left, top);
 
-                Console.WriteLine($"{(option == 1 ? color : "")}Tic Tac Toe \u001b[0m");
+                Console.WriteLine($"{(option == 1 ? color : "")}Rock, Paper, Scissors \u001b[0m");
                 Console.WriteLine($"{(option == 2 ? color : "")}Hangman \u001b[0m");
-                Console.WriteLine($"{(option == 3 ? color : "")}Rock, Paper, Scissors \u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Tic Tac Toe \u001b[0m");
                 Console.WriteLine($"{(option == 4 ? color : "")}EXIT \u001b[0m");
 
                 key = Console.ReadKey(true);
@@ -121,10 +121,6 @@ namespace Testing
             Console.BackgroundColor = ConsoleColor.Magenta; //Skifter farve på konsollens baggrund
             Console.ForegroundColor = ConsoleColor.White; //Skifter farve på konsollens tekst
             Console.WriteLine($"Welcome to Rock, Paper & Scissors, {name}");
-<<<<<<< HEAD
-            Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissor");
-                
-=======
             Console.WriteLine("Type the number corresponding to the weapon and the CPU will randomly choose it's weapon. \n1 - Rock, 2 - Paper, 3 - Scissors \nPress any key when you're ready.");
             Console.ReadKey();
 
@@ -170,7 +166,6 @@ namespace Testing
             } while (tryAgain);
             StartMenu(name); //Går tilbage til StartMenu funktionen
 
->>>>>>> RPS
         }
 
         static void TicTac(string name) //MANGLER FLYTTE BRIK EFTER SPIL FUNKTION

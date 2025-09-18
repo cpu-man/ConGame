@@ -12,7 +12,7 @@ namespace Testing
         static void Main(string[] args)
         {
             // Login system til konsollen hvor spilleren kan indsætte sit navn og alder
-            string userName;
+            string userName; // String der gemmer spillerens navn
             byte userAge = 18; // Minimum alder sat til 18
             bool validAge = true;
             Console.WriteLine("Please type your name");
@@ -33,38 +33,38 @@ namespace Testing
                 }
 
             } while (!validAge); // Do while loop kører så længe validAge bool er falsk, hvilket den er så længe spilleren er under 18
-            StartMenu(userName); // Kalder på StartMenu funktionen
+            StartMenu(userName); // Kalder på StartMenu funktionen med spillerens navn
 
         }
 
-        static void StartMenu(string name)
+        static void StartMenu(string name)//Konsolens start menu
         {
-            Console.Clear();
-            Console.ResetColor();
+            Console.Clear(); //Fjerner det tidligere tekst
+            Console.ResetColor(); //Skifter baggrundens og tekstens farve til de normale
 
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"welcome to world of AwesomeGames, {name}\u001b[0m");
+            Console.WriteLine($"Welcome to world of AwesomeGames, {name}\u001b[0m");
 
             Console.WriteLine("\nUse UpArrow & DownArrow to chose an option and press the \u001b[32mEnter\u001b[0m key to select");
 
             ConsoleKeyInfo key;
-            int option = 1;
+            int option = 1; // her da vi allerede er i mulighederne så den skal starte der 
             bool isSelected = false;
             int left = Console.CursorLeft;
-            int top = Console.CursorTop; // for at man kun kan vælgem ellem mulighederne
+            int top = Console.CursorTop; // for at man kun kan vælge mellem mulighederne
             string color = " \u001b[32m";
 
-            while (!isSelected)
+            while (!isSelected) // den valgte mulighed vil blive higlightet med denne farve vha string color
             {
                 Console.SetCursorPosition(left, top);
 
-                Console.WriteLine($"{(option == 1 ? color : "")}Rock, Paper, Scissors \u001b[0m");
+                Console.WriteLine($"{(option == 1 ? color : "")}Tic Tac Toe \u001b[0m");
                 Console.WriteLine($"{(option == 2 ? color : "")}Hangman \u001b[0m");
-                Console.WriteLine($"{(option == 3 ? color : "")}Tic Tac Toe \u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Rock, Paper, Scissors \u001b[0m");
                 Console.WriteLine($"{(option == 4 ? color : "")}EXIT \u001b[0m");
 
                 key = Console.ReadKey(true);
-                //int choiceInteger = 1;
+                int choiceInteger = 1;
                 switch (key.Key)
                 {
                     case ConsoleKey.DownArrow:
@@ -74,13 +74,13 @@ namespace Testing
                     case ConsoleKey.UpArrow:
                         option = (option == 1 ? 4 : option - 1);
                         break;
-
+                    // disse cases beskriver at der kun kan vælges mellem disse og at kun enter kan komme videre i dem med isselected
                     case ConsoleKey.Enter:
                         isSelected = true;
-                        //choiceInteger = option;
+                        choiceInteger = option;
                         break;
                 }
-                if (isSelected)
+                if (isSelected) // her når vi skifter til en af spillene. Kalder på spillets funktion når spillet bliver valgt
                 {
                     switch (option)
                     {
@@ -100,17 +100,16 @@ namespace Testing
                             break;
 
                         case 4:
-                            Environment.Exit(0);
+                            Environment.Exit(0); // får programmet til at lukke
                             break;
                     }
                 }
             }
 
 
-            Console.WriteLine($"you have selected the option: {option}");
+            Console.WriteLine($"you have selected the option {option}");
         }
-
-
+        
 
         static void RockPaper(string name) //Seperat funktion til sten,saks, papir
         {
@@ -128,15 +127,15 @@ namespace Testing
             do
             {
                 /* Do while loop som kører så længe vores bool er 'true'. 
-                 * 'CPU'en vælger et tilfældigt tal fra vores array og trækker én fra så det matcher vores array
+                 * 'CPU'en vælger et tilfældigt string fra vores array
                  */
                 Console.Clear();
                 Random random = new Random();
                 int randomObject = random.Next(gameObject.Length);
-                string cpuChoice = gameObject[randomObject];
+                string cpuChoice = gameObject[randomObject]; //Den tilfældige string bliver sat oveni cpuChoice
                 Console.WriteLine("Choose your weapon");
                 int userInput = int.Parse(Console.ReadLine()); //spillerens input bliver konverteret til en int vha. Parse
-                string userChoice = gameObject[userInput - 1]; // Ét tal bliver trækket fra spillerens input så det passer til arrays position
+                string userChoice = gameObject[userInput - 1]; // Ét tal bliver trækket fra spillerens input så det passer til arrays position 1 bliver til 0.
                 Console.WriteLine($"{name} chose {userChoice}");
                 Console.WriteLine($"CPU chose {cpuChoice}");
 
@@ -148,7 +147,7 @@ namespace Testing
                         (userChoice == gameObject[1] && cpuChoice == gameObject[0]) ||
                         (userChoice == gameObject[2] && cpuChoice == gameObject[1]))
                 {
-                    Console.WriteLine($"{name} wins the game!"); //Hvis spillerens har valgt det stærkere våben og CPU'en det svagere, vinder spilleren
+                    Console.WriteLine($"{name} wins the game!"); //Hvis spillerens har valgt det stærkere våben OG CPU'en det svagere, vinder spilleren.
                     playerScore++; //Ligger én oven i playerScore variablen
                 }
                 else
@@ -157,8 +156,6 @@ namespace Testing
                     cpuScore++; //Ligger én oven i cpuScore
                 }
 
-                //string quitKey = Console.ReadLine().ToLower();
-                //quitGame = (quitKey == "q");
                 Console.WriteLine($"{name} has {playerScore} points \nCPU has {cpuScore} points");
                 Console.WriteLine();
                 Console.WriteLine("Want to play again? (y/n)");
@@ -173,7 +170,7 @@ namespace Testing
 
         static void TicTac(string name) //MANGLER FLYTTE BRIK EFTER SPIL FUNKTION
         {
-            Console.Clear();
+            Console.Clear(); //Fjerner det tidligere tekst
             bool tryAgain = true;
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
@@ -182,7 +179,7 @@ namespace Testing
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
 
-            do
+            do //do while der kører så længe spilleren vil blive ved med at spille
             {
                 int cpuMove = 0;
                 int playerMove = 0; // sammen med cpuMove tjekker hvor mange gange der er blevet lagt en brik
@@ -190,7 +187,7 @@ namespace Testing
                 bool validPosition; //tjekker om spilleren har sat sin brik inden for den 3x3 spillebræt
 
                 Console.Clear();
-                //Laver et bræt ud af punktumer i vores arrays
+                //Laver et bræt ud af punktumer i vores 2D array
                 string[,] gameBoard = new string[3, 3];
                 for (int row = 0; row < 3; row++)
                 {
@@ -199,11 +196,11 @@ namespace Testing
                         gameBoard[row, col] = ".";
                     }
                 }
-            
 
-                do
+
+                do // Så længe spilleren har sat mindre end 3 brikker forsætter loppet
                 {
-                    // Hvis spilleren har sat mindre end 3 brikker forsætter loppet
+                    
                     if (playerMove < 3)
                     {
                         validPosition = true;
@@ -220,7 +217,7 @@ namespace Testing
                         else
                         {
                             Console.WriteLine("Invalid position");
-                            validPosition = false;
+                            validPosition = false; 
                         }
                     }
                     PrintBoard(gameBoard); //Viser brættet med brikker
@@ -248,13 +245,14 @@ namespace Testing
                 } while (!gameOver && (playerMove < 3 || cpuMove < 3)); //Kører hele loopet så længe hver spiller har mindre end tre brikker OG gameOver er falsk
 
                 
-                //Hvis spilleren ELLER CPU'en lagt 3 brikker OG CheckWin funktionen kan se der er blevet lagt brikker på stribe kører denne if statement
+                //Hvis spilleren ELLER CPU'en lagt 3 brikker OG CheckWin funktionen kan se der er blevet lagt brikker på stribe kører den første if statement
                 if ((playerMove >= 3 || cpuMove >= 3) && CheckWin(gameBoard, "X") || CheckWin(gameBoard, "O"))
                 {
                     gameOver = true;
                     Console.WriteLine(CheckWin(gameBoard, "X") ? $"{name} won!" : "CPU won!");
                     //Hvis CheckWin funktionen svarer tilbage med 'true' kører den, den første sætning. Hvis den svarer 'false' kører den sætningen efter kolon
                 }
+                //else kører når der ikke er nogen på stribe
                 else
                 {
                     gameOver = false;
@@ -262,12 +260,12 @@ namespace Testing
                 }
                 Console.WriteLine("Do you want to try again? (y/n)");
                 string userResponse = Console.ReadLine().ToLower(); //Spillerens svar bliver konverteret til lower case
-                tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" kører loopet, hvis ikke, går den ud. Virker dog ikke ordenligt
+                tryAgain = (userResponse == "y"); // Hvis spilleren skriver "y" fortsætter loopet, hvis ikke, går den ud og tilbage til menuen.
             } while (tryAgain);
             StartMenu(name);
 
 
-            //Laver en ny udgave af brættet hver gang der laves ændringer på den og 'printes' ud
+            //Funktion som laver en ny udgave af brættet hver gang der laves ændringer på den og 'printes' ud
             void PrintBoard(string[,] board)
             {
                 for (int row = 0; row < 3; row++)
@@ -280,12 +278,12 @@ namespace Testing
                 }
             }
             
-            //Tjekker om kryds eller bolle er blevet sat på stribe når der er blevet lagt tre brikker fra hver
+            //Funktion som tjekker om kryds eller bolle er blevet sat på stribe når der er blevet lagt tre brikker fra hver.
             bool CheckWin(string[,] board, string symbol)
             {
                 for (int row = 0; row < 3; row++)
                 {
-                    //Tjekker hver række og symbol (sat til X og O i CheckWin variablen l. 256)
+                    //Tjekker hver række og symbol (sat til X og O i CheckWin variablen l. 249)
                     if (board[row, 0] == symbol && board[row, 1] == symbol && board[row, 2] == symbol)
                         return true;
                 }
@@ -298,7 +296,6 @@ namespace Testing
             }
              
         }
-    
 
 
         private static void Hangman(int wrong)
@@ -310,6 +307,7 @@ namespace Testing
                 Console.WriteLine("     |  ");
                 Console.WriteLine("     |  ");
                 Console.WriteLine("    ---  ");
+
             }
             else if (wrong == 1)
             {
@@ -382,32 +380,25 @@ namespace Testing
             return rightLetters;
         }
 
-        private static void printLines(string randomWord)
-        {
-            Console.Write("\r");
-            foreach (char c in randomWord)
-            {
-                Console.OutputEncoding = System.Text.Encoding.Unicode;
-                Console.Write("\u0305 "); // for at lave linjer under hver bogstav men i anden linje  
-
-            }
-        }
-
         static void StartHangman(string name)
         {
-            Console.Clear();
-            Console.WriteLine($"Welcome to Hangman {name}");
+            Console.Clear();//Fjerner det tidligere tekst
+            Console.WriteLine($"Welcome to Hangman, {name}");
             Console.WriteLine("----------------------------");
 
+            // en liste af forskellige ord som bliver tilfældigt valgt af Random klassen
             Random random = new Random();
-            List<string> wordDictionary = new List<string> { "csharp", "zzz", "kuglepen", "sko", "bøger", "datamatiker", "apple", "maserati", "cykelhjelm", "grenaa", "snørebånd", "julefrokost", "sommer", "sol", "fiat" };
+            List<string> wordDictionary = new List<string> { "csharp", "zzz", "kuglepen", "sko", "bøger", "datamatiker", "apple", "maserati", "cykelhjelm", "grenaa", "snørebånd", "julefrokost", "sommer", "sol", "fiat", "chokolade", "vin", "sne", "vand", "tv" };
             int index = random.Next(wordDictionary.Count);
             string randomWord = wordDictionary[index];
 
+            Console.Write("\r\n");
+            Console.WriteLine("Guess the word");
             foreach (char x in randomWord)
             {
                 Console.Write("_ ");
             }
+            Console.Write("\r\n");
 
             int lengthOfWordToGuess = randomWord.Length;
             int amountOfTimesWrong = 0;
@@ -421,61 +412,88 @@ namespace Testing
                 {
                     Console.Write(letter + " ");
                 }
-                // promopt user for input 
+
+                // forbereder bruger til at indtaste et bogstav i randomword 
                 Console.Write("\nguess a letter: ");
                 char lettersGuessed = Console.ReadLine()[0];
-                // check if letter has allready been guessed / used 
+                // tjek hvsi bogstav allerede er belvet brugt  
                 if (currentLettersGuessed.Contains(lettersGuessed))
                 {
+                    Console.Clear();
+                    foreach (char x in randomWord)
+                    {
+                        Console.Write("_ ");
+                    }
                     Console.Write("\r\nThis letter has been guessed.");
                     Hangman(amountOfTimesWrong);
                     currentLettersRight = printWord(currentLettersGuessed, randomWord);
-                    //printLines(randomWord);
+
 
                 }
                 else
                 {
-                    // check if letter is in the word 
+                    // check hvis bogstavet er i ordet og som er i loop
                     bool right = false;
                     for (int i = 0; i < randomWord.Length; i++) if (lettersGuessed == randomWord[i]) { right = true; }
+
                     {
 
 
                         if (right)
                         {
+                            Console.Clear();
                             Hangman(amountOfTimesWrong);
                             currentLettersGuessed.Add(lettersGuessed);
                             currentLettersRight = printWord(currentLettersGuessed, randomWord);
                             Console.Write("\r\n");
-                            //printLines(randomWord);
+                            foreach (char x in randomWord)
+                            {
+                                Console.Write("_ ");
+                            }
+                            Console.Write("\r\n");
                         }
                         else
                         {
+                            Console.Clear();
                             currentLettersGuessed.Add(lettersGuessed);
                             Hangman(amountOfTimesWrong);
                             currentLettersRight = printWord(currentLettersGuessed, randomWord);
                             Console.Write("\r\n");
-                            //printLines(randomWord);
+                            foreach (char x in randomWord)
+                            {
+                                Console.Write("_ ");
+                            }
+                            Console.Write("\r\n");
+
                         }
                     }
                     if (right == false)
                     {
                         amountOfTimesWrong++;
-
-
                     }
                 }
-                if (currentLettersRight == lengthOfWordToGuess)
+                if (currentLettersRight == lengthOfWordToGuess) // her fortæller vi bare at hvis antallet af rigtige gættet ord passer med længden af ordet så får vi alt under her 
                 {
-                    Console.WriteLine("\r\n Thank you for your participation get back soon");
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\r\n Congratulations!!! You saved the man ");
+                    Console.ResetColor();
                     break;
                 }
-                if (amountOfTimesWrong == 7)
+                if (amountOfTimesWrong == 7) // her fortæller vi at hvis vi opbruger vores 7 forsøg så får vi alt under her 
+
                 {
-                    Console.WriteLine("\r\n Thank you for your participation get back soon tomorrow");
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("\r\n XOXO You died!!! ");
+                    Console.ResetColor();
+
                     break;
                 }
             }
         }
+
     }
 }

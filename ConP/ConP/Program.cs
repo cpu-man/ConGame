@@ -77,7 +77,7 @@ namespace Testing
 
                         case ConsoleKey.Enter:
                             isSelected = true;
-                            //choiceInteger = option;
+                            choiceInteger = option;
                             break;
                     }
                     if (isSelected)
@@ -199,7 +199,7 @@ namespace Testing
         static void StartHangman()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to Hangman XOXO");
+            Console.WriteLine("Welcome to Hangman");
             Console.WriteLine("----------------------------");
 
             Random random = new Random();
@@ -247,10 +247,10 @@ namespace Testing
                 }
                 else
                 {
-                    // check hvis bogstavet er i ordet 
+                    // check hvis bogstavet er i ordet og som er i loop
                     bool right = false;
                     for (int i = 0; i < randomWord.Length; i++) if (lettersGuessed == randomWord[i]) { right = true; }
-                    foreach (char x in randomWord)
+                    
                     {
 
 
@@ -265,6 +265,7 @@ namespace Testing
                             {
                                 Console.Write("_ ");
                             }
+                            Console.Write("\r\n");
                         }
                         else
                         {
@@ -277,6 +278,8 @@ namespace Testing
                             {
                                 Console.Write("_ ");
                             }
+                            Console.Write("\r\n");
+
                         }
                     }
                     if (right == false)
@@ -284,14 +287,24 @@ namespace Testing
                         amountOfTimesWrong++;
                     }
                 }
-                if (currentLettersRight == lengthOfWordToGuess)
+                if (currentLettersRight == lengthOfWordToGuess) // her fortæller vi bare at hvis antallet af rigtige gættet ord passer med længden af ordet så får vi alt under her 
                 {
-                    Console.WriteLine("\r\n Congratulations!!! You saved the man ");
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\r\n Congratulations!!! You saved the man ");
+                    Console.ResetColor();
                     break;
                 }
-                if (amountOfTimesWrong == 7)
+                if (amountOfTimesWrong == 7) // her fortæller vi at hvis vi opbruger vores 7 forsøg så får vi alt under her 
+                    
                 {
-                    Console.WriteLine("\r\n You died!!! XO try again ");
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("\r\n XOXO You died!!! ");
+                    Console.ResetColor();
+
                     break;
                 }
             }

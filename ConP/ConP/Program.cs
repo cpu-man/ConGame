@@ -292,7 +292,7 @@ namespace Testing
                     if (board[col, 0] == symbol && board[col, 1] == symbol && board[col, 2] == symbol)
                         return true;
                 }
-                return false; //Hvis X ikke er på stribe, så betyder det at CPU'en har vundet og returner falsk
+                return false; //Hvis ingen er på stribe
             }
              
         }
